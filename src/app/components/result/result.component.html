@@ -1,0 +1,22 @@
+<h3 style="text-align: center">Results!</h3>
+<div class="card mt-5">
+  <div class="card-body">
+    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+    <div class="justify-content-md-center">
+      <p>
+        You have got {{ correctAnswers }} out of {{ questions.length }} answers
+        correctly!
+      </p>
+      <p *ngIf="finalPercentage <= 50">Low score</p>
+      <p *ngIf="finalPercentage > 50 && finalPercentage <= 75">Can do better</p>
+      <p *ngIf="finalPercentage > 75">Great job!</p>
+      <a
+        class="btn btn-block btn-info cursor-restriction"
+        style="margin-top: 24px"
+        routerLink="/"
+      >
+        Go Back!
+      </a>
+    </div>
+  </div>
+</div>

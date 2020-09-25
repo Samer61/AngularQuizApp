@@ -1,0 +1,82 @@
+<!-- QUIZ STILL GOING -->
+<div class="container mt-5" *ngIf="!quizOver">
+  <h3 style="text-align: center">
+    {{ currentQuestion.question }} ({{ currentIndex }} / {{ questions.length }})
+  </h3>
+  <div class="card mt-5">
+    <div class="card-header">
+      <div class="progress">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          [style.width.%]="(currentIndex * 100) / questions.length"
+          aria-valuenow="(currentIndex * 100) / questions.length"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{ (currentIndex * 100) / questions.length | number: "1.0-0" }}%
+        </div>
+      </div>
+    </div>
+    <img
+      class="card-img-top"
+      *ngIf="currentQuestion.questionImg"
+      src="{{ currentQuestion.questionImg }}"
+    />
+    <div class="card-body">
+      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+      <div class="justify-content-md-center" *ngIf="!showExplanation">
+        <div class="row" *ngFor="let option of currentQuestion.options">
+          <button
+            class="btn btn-block btn-outline-primary cursor-restriction"
+            style="margin-top: 24px"
+            (click)="answeredQuestion(option)"
+          >
+            {{ option.text }}
+          </button>
+        </div>
+      </div>
+      <div class="row justify-content-md-center" *ngIf="showExplanation">
+        <div class="col-sm-12 col-lg-8">
+          <div
+            class="alert alert-danger"
+            *ngIf="!hasAnsweredCorrectly"
+            role="alert"
+          >
+            Wrong answer mate, the correct one is:
+            {{ currentQuestion.rightAnswer.text }}
+          </div>
+          <div
+            class="alert alert-success"
+            *ngIf="hasAnsweredCorrectly"
+            role="alert"
+          >
+            You're doing well!
+          </div>
+          <img
+            class="card-img-top"
+            *ngIf="currentQuestion.answerImage"
+            src="{{ currentQuestion.answerImage }}"
+          />
+          <p class="text-justify mt-2">{{ currentQuestion.explanation }}</p>
+          <button
+            class="btn btn-block btn-info cursor-restriction"
+            style="margin-top: 24px"
+            (click)="nextQuestion()"
+          >
+            <span *ngIf="currentIndex < questions.length">Next! Question!</span>
+            <span *ngIf="currentIndex == questions.length">End Quiz</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ OVER -->
+<div class="container mt-5" *ngIf="quizOver">
+  <app-result
+    [questions]="questions"
+    [correctAnswers]="correctAnswers"
+  ></app-result>
+</div>

@@ -1,0 +1,27 @@
+[
+  {
+    "_id": 1,
+    "question": "Who is the current president of the United States of America?",
+    "questionImg": "",
+    "options": [
+      {
+        "_id": "1",
+        "text": "Barack Obama"
+      },
+      {
+        "_id": "2",
+        "text": "Donald Trump"
+      },
+      {
+        "_id": "3",
+        "text": "George Bush"
+      }
+    ],
+    "rightAnswer": {
+      "_id": "2",
+      "text": "Donald Trump"
+    },
+    "explanation": "Explain answer here!",
+    "answerImage": ""
+  }
+]
